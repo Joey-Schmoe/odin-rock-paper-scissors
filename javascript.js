@@ -37,23 +37,13 @@ function getComputerChoice() {
 function displayPlayerChoice(choice) {
     const src = `images/${choice}.svg`;
 
-    if (document.querySelector('#player-image') === null) {
-        
-        const img = document.createElement('img');
-        img.src = src;
-        img.setAttribute('id', 'player-image');
-
-        document.querySelector('#player-display').appendChild(img);
-    } else {
-        document.querySelector('#player-image').src = src;
-    }
-    
-
-    //Create img element linked to choice image and append it to #player-display
+    document.querySelector('#player-image').src = src;
 }
 
 function displayComputerChoice(choice) {
-    const imgString = `images/${choice}.svg`
+    const src = `images/${choice}.svg`
+
+    document.querySelector('#computer-image').src = src;
 }
 
 //Called when one of the R-P-S buttons is pressed
@@ -62,24 +52,90 @@ function playGame(player) {
     let p = player;
     let c = getComputerChoice();
 
+    let w = "You Win!";
+    let t = "Tie!";
+    let l = "You Lose!"
+    
+    
+    const resultTextDisplay = document.querySelector('#result-text');
+    const resultWinnerTextDisplay = document.querySelector('#result-text-winner');
+
+    let resultText = "";
+    let winnerText = "";
+
     displayPlayerChoice(p);
+    displayComputerChoice(c);
 
     if (p === 'rock') {
         switch (c) {
             case 'rock':  
-                //Display computer choice
+                winnerText = t;
+                resultText = 'ties with';
+                break;
 
+            case 'paper':
+                winnerText = l;
+                resultText = 'loses to';
+                break;
+
+            case 'scissors':
+                winnerText = w;
+                resultText = 'beats';
+                break;
         }
     } else if (p === 'paper') {
-        //Display player choice
+        switch (c) {
+            case 'rock':  
+                winnerText = w;
+                resultText = 'beats';
+                break;
+
+            case 'paper':
+                winnerText = t;
+                resultText = 'ties with';
+                break;
+
+            case 'scissors':
+                winnerText = l;
+                resultText = 'loses';
+                break;
+        }
 
     } else if (p === 'scissors') {
-        //Display player choice
+        switch (c) {
+            case 'rock':  
+                winnerText = l;
+                resultText = 'loses to';
+                break;
+
+            case 'paper':
+                winnerText = w;
+                resultText = 'beats';
+                break;
+
+            case 'scissors':
+                winnerText = t;
+                resultText = 'ties with';
+                break;
+        }
 
     } else {
         console.log('ERROR: Player choice did not return rock || paper || scissors')
         return;
     }
+
+    resultText = `${capitalize(p)} ${ resultText } ${capitalize(c)}`;
+
+    //Write results and winner to html textcontent
+    resultTextDisplay.textContent = resultText;
+    resultWinnerTextDisplay.textContent = winnerText;
+}
+
+function capitalize(string) {
+    let lowerString = string.toLowerCase();
+    let firstLetter = string[0].toUpperCase();
+    let capitalizedString = firstLetter + lowerString.slice(1);
+    return capitalizedString;
 }
 
 function getPlayerChoice() {
