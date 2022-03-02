@@ -8,14 +8,21 @@ header {
 }
 
 div {
-    border: 1px solid black;
+
 }
 
 .container {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
+    gap: 48px;
     margin-bottom: 64px;
+}
+
+#button-container {
+    justify-content: center;
+    gap: 48px;
+    margin-top: 64px;
 }
 
 .choiceButtons {
@@ -38,9 +45,15 @@ div {
 #result-display {
     width: 250px;
     height: 250px;
+
+    border: 1px solid black;
 }
 
 .display {
     width: 200px;
-    height: 200px;
+    
+}
+
+.display > img {
+    width: 150px;
 }

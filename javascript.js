@@ -1,3 +1,15 @@
+//Get HTML references
+const playerDisplay = document.querySelector('#player-display');
+const resultDisplay = document.querySelector('#result-display');
+const computerDisplay = document.querySelector('#computer-display');
+
+const buttons = document.querySelectorAll('.choiceButtons');
+
+//Add Event Listeners to choice buttons
+buttons[0].addEventListener('click', () => playGame('rock'));
+buttons[1].addEventListener('click', () => playGame('paper'));
+buttons[2].addEventListener('click', () => playGame('scissors'));
+
 function getComputerChoice() {
     let rand = Math.random();
     let choice = "";
@@ -13,6 +25,61 @@ function getComputerChoice() {
     console.log(rand);
     console.log(choice);
     return choice;
+}
+
+//ON BUTTON PRESSED
+//  Display player choice
+//    Display image in player choice display
+//  Display computer choice
+//    Display image in computer choice display
+//  Run RPS function to get result
+//  Display results
+function displayPlayerChoice(choice) {
+    const src = `images/${choice}.svg`;
+
+    if (document.querySelector('#player-image') === null) {
+        
+        const img = document.createElement('img');
+        img.src = src;
+        img.setAttribute('id', 'player-image');
+
+        document.querySelector('#player-display').appendChild(img);
+    } else {
+        document.querySelector('#player-image').src = src;
+    }
+    
+
+    //Create img element linked to choice image and append it to #player-display
+}
+
+function displayComputerChoice(choice) {
+    const imgString = `images/${choice}.svg`
+}
+
+//Called when one of the R-P-S buttons is pressed
+function playGame(player) {
+    console.log(`Player Choice: ${player}`);
+    let p = player;
+    let c = getComputerChoice();
+
+    displayPlayerChoice(p);
+
+    if (p === 'rock') {
+        switch (c) {
+            case 'rock':  
+                //Display computer choice
+
+        }
+    } else if (p === 'paper') {
+        //Display player choice
+
+    } else if (p === 'scissors') {
+        //Display player choice
+
+    } else {
+        console.log('ERROR: Player choice did not return rock || paper || scissors')
+        return;
+    }
 }
 
 function getPlayerChoice() {
