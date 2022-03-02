@@ -16,7 +16,7 @@ function getComputerChoice() {
 }
 
 function getPlayerChoice() {
-    return window.prompt("Enter your choice:");
+    //return window.prompt("Enter your choice:");
 }
 
 function playRound(player, computer) {
@@ -67,12 +67,14 @@ function playRound(player, computer) {
 
 }
 
-function playGame(rounds) {
-    for (var i = 0; i < rounds; i++) {
-        let playerChoice = getPlayerChoice();
-        let computerChoice = getComputerChoice();
-        console.log(playRound(playerChoice, computerChoice));
-    }
-}
 
-playGame(window.prompt("How many rounds to play:"));
+
+// function playGame(rounds) {
+//     for (var i = 0; i < rounds; i++) {
+//         let playerChoice = getPlayerChoice();
+//         let computerChoice = getComputerChoice();
+//         console.log(playRound(playerChoice, computerChoice));
+//     }
+// }
+
+//playGame(window.prompt("How many rounds to play:"));
