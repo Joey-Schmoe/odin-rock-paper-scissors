@@ -9,9 +9,12 @@
     <title>Rock-Paper-Scissors</title>
 </head>
 <body>
-    <header>
-        <h1>Rock-Paper-Scissors</h1>
-    </header>
+    <div id="game-over" class = "no-display">
+        <div id="game-over-window">
+            <h2>Game Over!</h2>
+            <button id="game-over-button">Play Again</button>
+        </div>
+    </div>
     <div id="content">
         <div id="display-container" class="container">
             <div id="player-display" class="display">
@@ -19,9 +22,9 @@
                 <image src="images/help.svg" id="player-image"></image>
             </div>
             <div id="result-display" class="display">
-                <h1 id="score-text">Score</br>0-0</h1>
-                <h1 id="result-text-winner"></h1>
-                <p id="result-text"></p>
+                <h1 id="score-text">0 - 0</h1>
+                <h1 id="result-text-winner">Choose...</h1>
+                <p id="result-text">Rock - Paper - Scissors</p>
             </div>
             <div id="computer-display" class="display">
                 <h2>Computer</h2>

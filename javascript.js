@@ -2,13 +2,19 @@
 const playerDisplay = document.querySelector('#player-display');
 const resultDisplay = document.querySelector('#result-display');
 const computerDisplay = document.querySelector('#computer-display');
+const scoreDisplay = document.querySelector('#score-text');
+const gameOverDisplay = document.querySelector('#game-over');
 
 const buttons = document.querySelectorAll('.choiceButtons');
+
+const gameOverButton = document.querySelector('#game-over-button');
 
 //Add Event Listeners to choice buttons
 buttons[0].addEventListener('click', () => playGame('rock'));
 buttons[1].addEventListener('click', () => playGame('paper'));
 buttons[2].addEventListener('click', () => playGame('scissors'));
+
+gameOverButton.addEventListener('click', () => window.location.reload());
 
 let playerScore = 0;
 let computerScore = 0;
@@ -49,6 +55,31 @@ function displayComputerChoice(choice) {
     document.querySelector('#computer-image').src = src;
 }
 
+function displayScore() {
+    scoreDisplay.textContent = `${playerScore} - ${computerScore}`;
+}
+
+function increaseScore(winner) {
+    if (winner == "player") {
+        playerScore++;
+    } else if (winner == "computer") {
+        computerScore++;
+    }
+
+    displayScore();
+
+    if (playerScore >=5 || computerScore >= 5) {
+        endGame();
+    }
+}
+
+function endGame() {
+    //Runs when either player's score reaches 5
+    //  Display pop-up window with REPLAY button
+
+    gameOverDisplay.classList.toggle('no-display');
+}
+
 //Called when one of the R-P-S buttons is pressed
 function playGame(player) {
     console.log(`Player Choice: ${player}`);
@@ -79,12 +110,13 @@ function playGame(player) {
             case 'paper':
                 winnerText = l;
                 resultText = 'loses to';
-                computerScore++;
+                increaseScore('computer');
                 break;
 
             case 'scissors':
                 winnerText = w;
                 resultText = 'beats';
+                increaseScore('player');
                 break;
         }
     } else if (p === 'paper') {
@@ -92,6 +124,7 @@ function playGame(player) {
             case 'rock':  
                 winnerText = w;
                 resultText = 'beats';
+                increaseScore('player');
                 break;
 
             case 'paper':
@@ -102,6 +135,7 @@ function playGame(player) {
             case 'scissors':
                 winnerText = l;
                 resultText = 'loses';
+                increaseScore('computer');
                 break;
         }
 
@@ -110,11 +144,13 @@ function playGame(player) {
             case 'rock':  
                 winnerText = l;
                 resultText = 'loses to';
+                increaseScore('computer');
                 break;
 
             case 'paper':
                 winnerText = w;
                 resultText = 'beats';
+                increaseScore('player');
                 break;
 
             case 'scissors':
@@ -138,6 +174,5 @@ function playGame(player) {
 function capitalize(string) {
     let lowerString = string.toLowerCase();
     let firstLetter = string[0].toUpperCase();
-    let capitalizedString = firstLetter + lowerString.slice(1);
-    return capitalizedString;
+    return firstLetter + lowerString.slice(1);
 }
